@@ -5,7 +5,7 @@ This guide will help anyone who want to deploy his/her django application via Pa
 
 Different ways are given below:
 
-##1. Deploying on Heroku:
+##1. DEPLOYING on HEROKU:
 
 We can choose to use Heroku for several reasons:
 
@@ -61,7 +61,9 @@ $ sudo nano Procfile
 paste the below line there:
 web: gunicorn <your_project_name>.wsgi
 $ git add -A
+
 $ git commit -m "Created Procfile file"
+
 $ git push heroku master
 
 9. Set Environment variables like SECRET_KEY, Database credentials, AWS credentials for Heroku using heroku config:set <VAR_NAME>=<VAR_VALUE>
@@ -69,11 +71,14 @@ example:
 $ heroku config:set SECRET_KEY="asdsabsakjfksajkfas"
 
 10. Push the code to heroku remote master,  refer step 8.
+
 11. Check if heroku provide a postgres DB.
 $ heroku addons
 $ heroku pg (check db details)
+
 12.iF no DB is present then create a new database on Heroku (we didnt want to use sqlite3 on prod)
 $ heroku addons: create heroku-postgresql:hobby-dev (free tier)
+
 13. Install django-heroku
 $ pip install django-heroku
 This package will automatically configure our database url and will also take care of connecting our static assessts to gunicorn using a package called 'WhiteNoise'
@@ -83,6 +88,7 @@ import django_heroku
 # At the bottom
 django_heroku.settings(locals())
 Now, again push the changes to heroku remote master, refer step 8.
+
 14. Migrate the tables and create superuser. Go inside your machine(dyno) via
 $ heroku run bash
 $ python manage.py migrate
